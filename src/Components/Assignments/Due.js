@@ -16,7 +16,10 @@ const bull = (
   </Box>
 );
 
-const DueAssignment=(courseId) => {
+const DueAssignment=(props) => {
+    // destructuring the props
+    const { courseId, studentId } = props;
+
   return (
     <Grid container spacing={1} >
         <Grid item xs={12}>
