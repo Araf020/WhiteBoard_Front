@@ -1,6 +1,6 @@
 import { Grid, Typography,Card,CardContent} from '@mui/material';
 import React from 'react';
-import useStyles from './Style';
+import useStyles from '../Scores/Style';
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 
 
 interface Column {
-  id: 'dueDate' | 'aName' | 'status' | 'marks' | 'remarks';
+  id:  'fName' | 'desc' ;
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -20,64 +20,41 @@ interface Column {
 }
 
 const columns: Column[] = [
-  { id: 'aName', label: 'Assignment Name', minWidth: 170 },
-  { id: 'dueDate', label: 'Due Date', minWidth: 100 },
-  {
-    id: 'status',
-    label: 'Status',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'marks',
-    label: 'Marks',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'remarks',
-    label: 'Remarks',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toFixed(2),
-  },
+  { id: 'fName', label: 'File Name', minWidth: 170 },
+  { id: 'desc', label: 'Description', minWidth: 300 },
+ 
 ];
 
 
 function createData(
-  aName: string,
-  status: string,
-  marks: number,
-  remarks: number,
+  fName: string,
+  desc: string,
+ 
 ): Data {
   // const density = population / size;
-  return { aName, status, marks, remarks };
+  return { fName, desc };
 }
 
 const rows = [
-  createData('India', 'IN', 1324171354, 3287263),
-  createData('China', 'CN', 1403500365, 9596961),
-  createData('Italy', 'IT', 60483973, 301340),
-  createData('United States', 'US', 327167434, 9833520),
-  createData('Canada', 'CA', 37602103, 9984670),
-  createData('Australia', 'AU', 25475400, 7692024),
-  createData('Germany', 'DE', 83019200, 357578),
-  createData('Ireland', 'IE', 4857000, 70273),
-  createData('Mexico', 'MX', 126577691, 1972550),
-  createData('Japan', 'JP', 126317000, 377973),
-  createData('France', 'FR', 67022000, 640679),
-  createData('United Kingdom', 'GB', 67545757, 242495),
-  createData('Russia', 'RU', 146793744, 17098246),
-  createData('Nigeria', 'NG', 200962417, 923768),
-  createData('Brazil', 'BR', 210147125, 8515767),
+  createData('India', 'IN'),
+  createData('China', 'CN'),
+  createData('Italy', 'IT' ),
+  createData('United States', 'US'),
+  createData('Canada', 'CA'),
+  createData('Australia', 'AU'),
+  createData('Germany', 'DE' ),
+  createData('Ireland', 'IE'),
+  createData('Mexico', 'MX'),
+  createData('Japan', 'JP'),
+  createData('France', 'FR' ),
+  createData('United Kingdom', 'GB' ),
+  createData('Russia', 'RU'),
+  createData('Nigeria', 'NG'),
+  createData('Brazil', 'BR'),
 ];
 
 
-const Grade = (props) => {
-  // destructuring props
-  const { courseId, studentId } = props;
+const CourseMaterials = (courseId) => {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -91,7 +68,7 @@ const Grade = (props) => {
                   <TableHead>
                     <TableRow>
                       <TableCell align="center" colSpan={2}>
-                        Student Name
+                        Course Materials
                       </TableCell>
                       <TableCell align="center" colSpan={3}>
                         Details
@@ -137,4 +114,4 @@ const Grade = (props) => {
     );
 }
 
-export default Grade;
+export default CourseMaterials;

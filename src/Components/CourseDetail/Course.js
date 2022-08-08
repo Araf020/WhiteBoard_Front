@@ -1,5 +1,5 @@
 import { Grid, Typography,Card,CardContent} from '@mui/material';
-import React from 'react';
+import {React, useState, useEffect} from 'react';
 import Sidebar from '../Dashboard/Sidebar';
 import Filter from '../Dashboard/Filter/Filter';
 import useStyles from './GradeStyle';
@@ -19,14 +19,26 @@ import FolderIcon from '@mui/icons-material/Folder';
 // grade icon
 import GradeIcon from '@mui/icons-material/Grade';
 import DueAssignment from '../Assignments/Due';
+import CompletedAssignment from '../Assignments/Completed';
 import Grade from '../Scores/Grade';
+import CourseFiles from '../CourseMaterials/Materials';
 
 const CourseDetail = () => {
     const classes = useStyles();
 
+    // useState to store the option selected
+   
+    
+    const [component, setComponent] = useState(<DueAssignment/>);
     // get the courseId from the url
     // using useParams from react-router-dom
     const { courseTitle, courseId } = useParams();
+    
+
+   
+
+    const stdId = 2;
+    
     console.log("courseId: ", courseId);
     return (
         <div className={classes.root} >
@@ -53,6 +65,9 @@ const CourseDetail = () => {
                             <Divider />
                             <Divider />
 
+                            
+                            
+
                             <List
                                 sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
                                 component="nav"
@@ -63,15 +78,38 @@ const CourseDetail = () => {
                                     </ListSubheader>
                                 }
                                 >
-                                <ListItemButton>
+                           {/* choose a listItem and execute an action */}
+                           
+
+                               
+
+                                <ListItemButton key={1}  button
+                                    onClick={() => {
+                                        // print key value of the listItem
+                                        console.log("key: ", 1);
+                                        console.log("Due clicked");
+                                        
+                                        
+                                       setComponent(<DueAssignment courseId={courseId} studentId={stdId} />);
+                                    }
+                                    }
+                                >
 
                                     <ListItemText primary="Due Assignments" />
                                     <ListItemIcon>
                                     <AssignmentIcon />
                                     </ListItemIcon>
-                                </ListItemButton>
+                                </ListItemButton >
                                 
-                                <ListItemButton>
+                                <ListItemButton key={2}  onClick={() => {
+                                        // print key value of the listItem
+                                        console.log("key: ", 2);
+                                        console.log("Completed clicked");
+                                        
+                                        
+                                        setComponent(<CompletedAssignment courseId={courseId} studentId={stdId}/>);
+                                    }
+                                    }>
                                 
                                     <ListItemText primary="Completed Assignments" />
                                     <ListItemIcon>
@@ -79,7 +117,16 @@ const CourseDetail = () => {
                                     </ListItemIcon>
                                 </ListItemButton>
 
-                                <ListItemButton>
+                                <ListItemButton key={3}  onClick={() => {
+                                        // print key value of the listItem
+                                        console.log("key: ", 3);
+                                        console.log("Grades clicked");
+                                        
+                                        
+                                        setComponent(<Grade courseId={courseId} studentId={stdId} />);
+
+                                    }
+                                    }>
                                 
                                     <ListItemText primary="Grades" />
                                     <ListItemIcon>
@@ -88,7 +135,15 @@ const CourseDetail = () => {
 
                                 </ListItemButton>
 
-                                <ListItemButton>
+                                <ListItemButton key={4}  onClick={() => {
+                                        // print key value of the listItem
+                                        console.log("key: ", 4);
+                                        console.log("Materials clicked");
+                                        
+                                        
+                                        setComponent(<CourseFiles courseId={courseId} />);
+                                    }
+                                    }>
                                 
                                     <ListItemText primary="Materials" />
                                     <ListItemIcon>
@@ -107,7 +162,9 @@ const CourseDetail = () => {
                         <Paper className={classes.paper} style={{paddingTop:'45px'}}>
                             <Typography>Course Actions</Typography>
                             <Divider />
-                            <Grade studentId={2} />
+                            {component}
+                            {/* <CourseFiles /> */}
+                            {/* <Grade studentId={2} /> */}
                             {/* <DueAssignment courseId={courseId}/> */}
 
                             
