@@ -2,93 +2,47 @@ import { Grid, Typography,Card,CardContent} from '@mui/material';
 import React from 'react';
 import Sidebar from '../Sidebar'
 import useStyles from './TeamsStyle';
+import Card_ from './CourseCard';
+import {useState, useEffect} from 'react';
 
 function Teams() {
     const classes = useStyles();
+
+    // fetch courses from server api
+    const [courses, setCourses] = useState([]);
+    
+    useEffect(() => {
+        fetch('http://localhost:8080/api/courses', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'}
+            })
+            .then(res => res.json())
+            .then(data => {
+                setCourses(data);
+                console.log(data);
+                console.log("courses: ", courses);
+            }).catch(err => {
+                console.log(err);
+            }
+            );
+    } , []);
 
     return (
         <div className={classes.root} >
             <Sidebar/>
             <main className={classes.content}>
-                <Typography>Teams*</Typography> 
+                <Typography>Your Courses</Typography> 
                 <Grid container>
-                <Grid item xs={12} md={6} lg={3}>
-                <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px' }}>
-                    <div className={classes.courseHeader} style={{background:'#005671'}}>
-                        <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-                        <Typography className={classes.courseHeaderText}>Lead Software Engineer</Typography>
-                    </div>
-                    <div className={classes.TeacherImg}>
-                        <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-                    </div>
-                </Card>
-            </Grid> 
-            <Grid item xs={12} md={6} lg={3}>
-            <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-                <div className={classes.courseHeader} style={{background:'#005671'}}>
-                    <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-                    <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-                </div>
-                <div className={classes.TeacherImg}>
-                    <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-                </div>
-            </Card>
-        </Grid>   <Grid item xs={12} md={6} lg={3}>
-        <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-            <div className={classes.courseHeader} style={{background:'#005671'}}>
-                <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-                <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-            </div>
-            <div className={classes.TeacherImg}>
-                <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-            </div>
-        </Card>
-    </Grid> 
-        <Grid item xs={12} md={6} lg={3}>
-        <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-            <div className={classes.courseHeader} style={{background:'#005671'}}>
-                <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-                <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-            </div>
-            <div className={classes.TeacherImg}>
-                <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-            </div>
-        </Card>
-    </Grid>   
-    <Grid item xs={12} md={6} lg={3}>
-        <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-        <div className={classes.courseHeader} style={{background:'#005671'}}>
-            <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-            <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-        </div>
-        <div className={classes.TeacherImg}>
-            <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-        </div>
-    </Card>
-</Grid>   
-    <Grid item xs={12} md={6} lg={3}>
-        <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-            <div className={classes.courseHeader} style={{background:'#005671'}}>
-                <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-                <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-            </div>
-            <div className={classes.TeacherImg}>
-                <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-            </div>
-        </Card>
-    </Grid>   
-    <Grid item xs={12} md={6} lg={3}>
-    <Card className={classes.card} style={{background:'#f7f8fa',margin:'10px'}}>
-        <div className={classes.courseHeader} style={{background:'#005671'}}>
-            <Typography className={classes.courseHeaderText} variant="h6">Talent Name</Typography>
-            <Typography className={classes.courseHeaderText} >Lead Software Engineer</Typography>
-        </div>
-        <div className={classes.TeacherImg}>
-            <img className={classes.courseTeacherImg}  src="https://res.cloudinary.com/wagon/image/upload/c_fill,h_460,q_auto,w_488/v1605879358/jcoffmyvuvo18eovdkuf.webp"/>
-        </div>
-    </Card>
-</Grid>  
-    </Grid>
+                
+                    {/* return a card for every course in courses */}
+                    {courses.map(course => (
+                        <Grid item xs={12} sm={6} md={4}>  
+                            <Card_ course={course} />
+                        </Grid>
+                    ))}
+                
+                </Grid>
     </main>
         </div>
     );
