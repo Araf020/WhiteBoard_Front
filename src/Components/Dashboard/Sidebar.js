@@ -104,7 +104,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-export default function Sidebar() {
+const Sidebar=({setOption}) => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -151,7 +151,9 @@ export default function Sidebar() {
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
               px: 2.5,
-            }}>
+            }} 
+            onClick={() => setOption('course')}>
+            
               <ListItemIcon 
                 sx={{
                   minWidth: 0,
@@ -177,6 +179,7 @@ export default function Sidebar() {
                   mr: open ? 3 : 'auto',
                   justifyContent: 'center',
                 }}
+                onClick={() => setOption('due')}
               >
                 <AssignmentRoundedIcon />
               </ListItemIcon>
@@ -188,7 +191,9 @@ export default function Sidebar() {
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
               px: 2.5,
-            }}>
+            }}
+            onClick={() => setOption('completed')}
+            >
               <ListItemIcon 
                 sx={{
                   minWidth: 0,
@@ -231,7 +236,9 @@ export default function Sidebar() {
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
               px: 2.5,
-            }}>
+            }}
+            onClick={() => setOption('files')}
+            >
               <ListItemIcon 
                 sx={{
                   minWidth: 0,
@@ -249,13 +256,16 @@ export default function Sidebar() {
               minHeight: 48,
               justifyContent: open ? 'initial' : 'center',
               px: 2.5,
-            }}>
+            }}
+            onClick={() => setOption('notice')}
+            >
               <ListItemIcon 
                 sx={{
                   minWidth: 0,
                   mr: open ? 3 : 'auto',
                   justifyContent: 'center',
                 }}
+
               > 
                 <NoticeICon  
                 
@@ -270,3 +280,5 @@ export default function Sidebar() {
     </Box>
   );
 }
+
+export default Sidebar;
