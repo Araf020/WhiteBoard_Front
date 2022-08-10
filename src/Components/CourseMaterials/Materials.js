@@ -11,20 +11,11 @@ import TableRow from '@mui/material/TableRow';
 
 
 
-interface Column {
-  id:  'fName' | 'desc' ;
-  label: string;
-  minWidth?: number;
-  align?: 'right';
-  format?: (value: number) => string;
-}
-
 const columns: Column[] = [
   { id: 'fName', label: 'File Name', minWidth: 170 },
   { id: 'desc', label: 'Description', minWidth: 300 },
  
 ];
-
 
 function createData(
   fName: string,

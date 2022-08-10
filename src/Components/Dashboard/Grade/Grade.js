@@ -86,7 +86,7 @@ function Teams() {
    
 
     return (
-        <div className={classes.root} >
+          <div className={classes.root} >
             <Sidebar/>
             <main className={classes.content}  >
             <Grid container>

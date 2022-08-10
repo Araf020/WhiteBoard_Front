@@ -13,6 +13,7 @@ import StudentList from './Dashboard/StudentList/StudentList';
 import Chat from './Dashboard/Chat/Chat';
 import AssignmentDetail from './Dashboard/Assignment/AssignmentDetail';
 import CouseDetail from './CourseDetail/Course';
+import InstructorDashboard from './Admin/Instructor/InstructorBoard';
 
 
 function MainRouter () {
@@ -30,6 +31,7 @@ function MainRouter () {
                         <Route path="/assignmentDetail" element={<AssignmentDetail />} />
                         {/* route with courseId */}
                         <Route path="/courses/:courseTitle/:courseId" element={<CouseDetail />} />
+                        <Route path="/admin/" element={<InstructorDashboard />} />
                     </Routes>
                 </Router>
             </>
