@@ -1,13 +1,12 @@
-import { Grid, Typography,Card,CardContent} from '@mui/material';
+import { Grid, Typography} from '@mui/material';
 import React from 'react';
 
-import useStyles from '../../Dashboard/Teams/TeamsStyle';
+import useStyles from '../Dashboard/Teams/TeamsStyle';
 import {useState, useEffect} from 'react';
-import Sidebar from './Sidebar_A';
-import CreateAssignment from './CreateAssignment';
-import Responses from './Responses';
-import Publish from './PublishResult';
-import Announce from './Announce';
+import SideDrawer from './SideDrawer';
+import Approve from './Approve';
+
+import AssignInstructor from './AssignInstructor';
 
 const Dashboard = () => {
     const classes = useStyles();
@@ -15,12 +14,12 @@ const Dashboard = () => {
     const[option, setOption] = useState('post');
 
     useEffect(() => {
-        if(option === 'post'){
+        if(option === 'assign'){
             setComponent(
                 <div>
                    
                        
-                        <CreateAssignment />
+                   <AssignInstructor/>
                         
                     
                 </div>
@@ -28,28 +27,22 @@ const Dashboard = () => {
         }
 
         // else if (option === 'announcement'){
-        else if(option=== 'announce'){
+        else if(option=== 'approve'){
             setComponent(
             <div>
-                <Announce/>
+                <Approve/>
             </div>
             );
         }
 
-        else if (option === 'submission'){
+        else if (option === 'overview'){
             setComponent(
             <div>
-                <Responses />
+                <h1>overview</h1>
             </div>
             );
         }
-        else if (option === 'grade'){
-            setComponent(
-                <div>
-                    <Publish/>
-                </div>
-            );
-        }
+       
 
 
     }, [option]);
@@ -57,7 +50,7 @@ const Dashboard = () => {
 
     return (
         <div className={classes.root}>
-            <Sidebar setOption={setOption}/>
+            <SideDrawer setOption={setOption}/>
             <main className={classes.content}>
                 {component}
             </main>

@@ -5,7 +5,7 @@ import useStyles from '../../Dashboard/Teams/TeamsStyle';
 import {useState, useEffect} from 'react';
 import {Button, TextField, InputLabel, Select, MenuItem, Input, InputAdornment, IconButton, FormHelperText, FormLabel, RadioGroup, Radio, FormGroup, FormControl} from '@mui/material';
 import LibraryAddTwoToneIcon from '@mui/icons-material/LibraryAddTwoTone';
-const CreateAss = () => {
+const Announce = () => {
 
     const [courseId, setCourseId] = useState('');
     const [desc, setDesc] = useState('No Description Added!');
@@ -23,7 +23,7 @@ const CreateAss = () => {
                 {/* assh color : #f5f5f5 */}
                 <Paper className='paper' sx={{width:'100%', maxWidth:'100%' ,bgcolor:'#f5f5f5', alignContent:'center'}}>
                     <Typography sx={{paddingLeft:'20px', paddingRight:'20px', paddingTop:'20px',paddingBottom:'20px', color:'black', font:'caption'}}>
-                        Create Assignment
+                        Create an Announcement
                     </Typography>
                 </Paper>
             
@@ -34,7 +34,7 @@ const CreateAss = () => {
                 <Grid item >
                     <TextField
                         id="outlined-basic"
-                        label="Assignment Title"
+                        label="Title"
                         variant="outlined"
                         // value={assTitle}
                         onChange={(e) => setAssTitle(e.target.value)}
@@ -42,7 +42,7 @@ const CreateAss = () => {
                     />
                 </Grid>
             
-                <Grid item>
+                {/* <Grid item>
                     <TextField
                         id="outlined-basic"
                         label="Due Date"
@@ -55,7 +55,7 @@ const CreateAss = () => {
                         onChange={(e) => setDueDate(e.target.value)}
                         
                         />
-                </Grid>
+                </Grid> */}
                 
                 <Grid item>
 
@@ -109,7 +109,7 @@ const CreateAss = () => {
                 <Grid item sm={5}/>
                 <Grid item>
                 <Button variant="contained" color="primary" style={{marginTop:'20px', marginBottom:'20px'}}>
-                    Create Assignment
+                    Announce
                 </Button>
                 </Grid>
                 <Grid item sm={5}/>
@@ -129,4 +129,4 @@ const CreateAss = () => {
 }
 
 ;
-export default CreateAss;
+export default Announce;

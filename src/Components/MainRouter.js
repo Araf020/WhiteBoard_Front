@@ -14,7 +14,7 @@ import Chat from './Dashboard/Chat/Chat';
 import AssignmentDetail from './Dashboard/Assignment/AssignmentDetail';
 import CouseDetail from './CourseDetail/Course';
 import InstructorDashboard from './Admin/Instructor/InstructorBoard';
-
+import SuperUserDashboard from './SuperUser/SuperUserDashboard';
 
 function MainRouter () {
         return (
@@ -31,7 +31,8 @@ function MainRouter () {
                         <Route path="/assignmentDetail" element={<AssignmentDetail />} />
                         {/* route with courseId */}
                         <Route path="/courses/:courseTitle/:courseId" element={<CouseDetail />} />
-                        <Route path="/admin/" element={<InstructorDashboard />} />
+                        <Route path="/instructor/" element={<InstructorDashboard />} />
+                        <Route path="/admin/" element={<SuperUserDashboard />} />
                     </Routes>
                 </Router>
             </>
